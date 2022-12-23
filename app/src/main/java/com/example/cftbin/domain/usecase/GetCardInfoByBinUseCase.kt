@@ -6,7 +6,7 @@ import com.example.cftbin.domain.entity.CardInfo
 class GetCardInfoByBinUseCase(
     private val repository: CardRepository
 ) {
-   suspend fun getCardInfoByBin(bin: String?): CardInfo? {
+   suspend fun getCardInfoByBin(bin: String): CardInfo? {
        return repository.getCardInfoByBin(bin)
    }
 }

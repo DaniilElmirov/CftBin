@@ -1,6 +1,6 @@
-package com.example.cftbin.domain.entity
+package com.example.cftbin.data.network.model
 
-data class Bank(
+data class BankDto(
     val name: String,
     val url: String,
     val phone: String?,
