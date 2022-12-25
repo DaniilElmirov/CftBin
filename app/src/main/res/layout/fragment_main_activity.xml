@@ -42,6 +42,16 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.66" />
 
+    <Button
+        android:id="@+id/b_load_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_bin"
+        android:layout_marginTop="8dp"/>
+
 
     <TextView
         android:id="@+id/title_scheme_network"
@@ -50,7 +60,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/gl_first"
-        app:layout_constraintTop_toBottomOf="@+id/til_bin"
+        app:layout_constraintTop_toBottomOf="@+id/b_load_data"
         android:layout_marginTop="8dp"
 
         android:text="@string/scheme_network"
@@ -175,7 +185,7 @@
 
         app:layout_constraintStart_toStartOf="@+id/gl_first"
         app:layout_constraintEnd_toEndOf="@+id/gl_second"
-        app:layout_constraintTop_toBottomOf="@+id/til_bin"
+        app:layout_constraintTop_toBottomOf="@+id/b_load_data"
         android:layout_marginTop="8dp"
 
         android:text="@string/type"
@@ -249,11 +259,13 @@
         app:layout_constraintEnd_toStartOf="@+id/text_country_name"
         app:layout_constraintTop_toBottomOf="@+id/title_country"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
 
         android:textSize="10sp"
         android:textStyle="bold"
         android:gravity="center"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_country_name"/>
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_country_name"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
 
     <TextView
         android:id="@+id/text_country_name"
@@ -275,15 +287,15 @@
         android:layout_height="wrap_content"
 
         app:layout_constraintStart_toStartOf="@id/gl_first"
-        app:layout_constraintTop_toBottomOf="@+id/text_alpha_two"
+        app:layout_constraintTop_toBottomOf="@+id/text_country_name"
         app:layout_constraintEnd_toStartOf="@+id/gl_second"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
 
         android:textSize="10sp"
         android:gravity="center"
-        tools:text="dfgdfgd"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
+        android:autoLink="map"
+        tools:text="dfgdfgd" />
 
 
     <TextView
@@ -293,7 +305,7 @@
 
         app:layout_constraintStart_toStartOf="@+id/gl_second"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/til_bin"
+        app:layout_constraintTop_toBottomOf="@+id/b_load_data"
         android:layout_marginTop="8dp"
 
         android:text="@string/bank"
@@ -301,13 +313,28 @@
         android:gravity="center"/>
 
     <TextView
-        android:id="@+id/text_bank_name_city"
+        android:id="@+id/text_bank_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
         app:layout_constraintStart_toStartOf="@+id/title_bank"
-        app:layout_constraintEnd_toEndOf="@+id/title_bank"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_bank"
+        android:layout_marginTop="8dp"
+
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:gravity="center"
+        tools:text="fgfgdfgd" />
+
+    <TextView
+        android:id="@+id/text_bank_city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="@id/title_bank"
+        app:layout_constraintEnd_toEndOf="@+id/title_bank"
+        app:layout_constraintTop_toBottomOf="@+id/text_bank_name"
         android:layout_marginTop="8dp"
 
         android:textStyle="bold"
@@ -322,7 +349,7 @@
 
         app:layout_constraintStart_toStartOf="@+id/title_bank"
         app:layout_constraintEnd_toEndOf="@+id/title_bank"
-        app:layout_constraintTop_toBottomOf="@+id/text_bank_name_city"
+        app:layout_constraintTop_toBottomOf="@+id/text_bank_city"
         android:layout_marginTop="8dp"
 
         android:autoLink="web"

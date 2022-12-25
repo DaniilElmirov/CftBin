@@ -11,6 +11,6 @@
     <string name="type">TYPE</string>
     <string name="prepaid">PREPAID</string>
     <string name="country">COUNTRY</string>
-    <string name="latitude">latitude: </string>
+    <string name="latitude_longitude">(latitude: %1$s, \n longitude: %2$s) </string>
     <string name="bank">BANK</string>
 </resources>
