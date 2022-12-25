@@ -1,5 +1,6 @@
 package com.example.cftbin.data
 
+import android.util.Log
 import com.example.cftbin.data.mapper.CardMapper
 import com.example.cftbin.data.network.CardApi
 import com.example.cftbin.domain.CardRepository
@@ -9,7 +10,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 private const val BASE_URL = "https://lookup.binlist.net/"
 
-class CardRepositoryImpl: CardRepository {
+class CardRepositoryImpl : CardRepository {
     private val retrofit: Retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .addConverterFactory(MoshiConverterFactory.create())
@@ -22,12 +23,11 @@ class CardRepositoryImpl: CardRepository {
         var cardInfo: CardInfo? = null
 
         try {
-            val response = mapper.mapCardInfoDtoToEntity(api.getCardInfoByBin(bin))
-            cardInfo = response
+            val response = api.getCardInfoByBin(bin)
+            cardInfo = mapper.mapCardInfoDtoToEntity(response)
         } catch (e: Exception) {
-
+            Log.d("TAG2", "Catch")
         }
         return cardInfo
     }
-
 }

@@ -1,5 +1,8 @@
 package com.example.cftbin.data.network.model
 
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class CardInfoDto(
     val number: NumberDto,
     val scheme: String,
