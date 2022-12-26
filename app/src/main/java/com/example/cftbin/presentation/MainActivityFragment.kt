@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -36,8 +37,12 @@ class MainActivityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val bins = resources.getStringArray(R.array.card_bins)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_history, bins)
+        binding.tvBin.setAdapter(arrayAdapter)
+
         binding.bLoadData.setOnClickListener {
-            viewModel.getCardInfoByBin(binding.etBin.text.toString())
+            viewModel.getCardInfoByBin(binding.tvBin.text.toString())
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

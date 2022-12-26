@@ -13,4 +13,11 @@
     <string name="country">COUNTRY</string>
     <string name="latitude_longitude">(latitude: %1$s, \n longitude: %2$s) </string>
     <string name="bank">BANK</string>
+    
+    <string-array name="card_bins">
+        <item>4276</item>
+        <item>427626</item>
+        <item>42762600</item>
+        <item>52762600</item>
+    </string-array>
 </resources>
