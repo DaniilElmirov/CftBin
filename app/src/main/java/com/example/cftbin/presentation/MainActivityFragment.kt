@@ -1,5 +1,7 @@
 package com.example.cftbin.presentation
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +47,7 @@ class MainActivityFragment : Fragment() {
         binding.bLoadData.setOnClickListener {
             viewModel.getCardInfoByBin(binding.tvBin.text.toString())
         }
+
     }
 
     override fun onDestroyView() {
@@ -67,10 +70,21 @@ class MainActivityFragment : Fragment() {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.setBinHistory.collect {
                     bins = it.toTypedArray()
-                    val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_history, bins)
+                    val arrayAdapter =
+                        ArrayAdapter(requireContext(), R.layout.item_history, bins)
                     binding.tvBin.setAdapter(arrayAdapter)
                 }
             }
+        }
+    }
+
+    private fun showCountry(cardInfo: CardInfo?) {
+        binding.textLatitudeLongitude.setOnClickListener {
+            val gmmIntentUri = Uri.parse(
+                "geo:${cardInfo?.country?.latitude},${cardInfo?.country?.longitude}"
+            )
+            val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+            startActivity(mapIntent)
         }
     }
 
@@ -114,6 +128,8 @@ class MainActivityFragment : Fragment() {
                 textBankCity.text = cardInfo.bank?.city ?: DEFAULT_TEXT
                 textBankUrl.text = cardInfo.bank?.url ?: DEFAULT_TEXT
                 textBankPhone.text = cardInfo.bank?.phone ?: DEFAULT_TEXT
+
+                showCountry(cardInfo)
             }
         }
     }
