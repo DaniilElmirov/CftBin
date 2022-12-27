@@ -2,10 +2,10 @@ package com.example.cftbin.domain.usecase
 
 import com.example.cftbin.domain.CardRepository
 
-class ClearOldEntitiesUseCase(
+class ClearOldDbEntitiesUseCase(
     private val repository: CardRepository
 ) {
-    suspend fun clearOldEntities() {
-        repository.clearOldEntities()
+    suspend fun clearOldDbEntities() {
+        repository.clearOldDbEntities()
     }
 }

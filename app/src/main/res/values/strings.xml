@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CftBin</string>
     
-    <string name="hint_bin">Enter the first digits of a card number (BIN/IIN)</string>
+    <string name="hint_bin">Enter the BIN/IIN</string>
 
     <string name="scheme_network">SCHEME / NETWORK</string>
     <string name="brand">BRAND</string>
@@ -11,13 +11,8 @@
     <string name="type">TYPE</string>
     <string name="prepaid">PREPAID</string>
     <string name="country">COUNTRY</string>
-    <string name="latitude_longitude">(latitude: %1$s, \n longitude: %2$s) </string>
+    <string name="latitude_longitude">(latitude: %1$s, longitude: %2$s) </string>
     <string name="bank">BANK</string>
-    
-    <string-array name="card_bins">
-        <item>4276</item>
-        <item>427626</item>
-        <item>42762600</item>
-        <item>52762600</item>
-    </string-array>
+
+    <string name="search_card_info">SEARCH CARD INFO</string>
 </resources>

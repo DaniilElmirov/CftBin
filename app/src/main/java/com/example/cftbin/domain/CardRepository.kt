@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.Flow
 interface CardRepository {
     suspend fun getCardInfoByBin(bin: String): CardInfo?
 
-    fun getBinHistoryArray(): Flow<Set<BinItem>>
+    fun getBinItemSet(): Flow<Set<BinItem>>
 
-    suspend fun clearOldEntities()
+    suspend fun clearOldDbEntities()
 
-    suspend fun addBinHistoryItem(binItem: BinItem)
+    suspend fun addBinItemInDb(binItem: BinItem)
 }

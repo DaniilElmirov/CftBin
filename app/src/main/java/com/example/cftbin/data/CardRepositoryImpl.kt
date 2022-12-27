@@ -38,19 +38,19 @@ class CardRepositoryImpl(application: Application) : CardRepository {
         return cardInfo
     }
 
-    override fun getBinHistoryArray(): Flow<Set<BinItem>> {
-        return binListDao.getBinHistoryArray().map {
-            mapper.mapDbBinArrayToArrayEntity(it)
+    override fun getBinItemSet(): Flow<Set<BinItem>> {
+        return binListDao.getBinDbList().map {
+            mapper.mapListBinDbToSetItem(it)
         }
     }
 
-    override suspend fun clearOldEntities() {
-        binListDao.clearOldEntities()
+    override suspend fun clearOldDbEntities() {
+        binListDao.clearOldDbEntities()
     }
 
-    override suspend fun addBinHistoryItem(binItem: BinItem) {
+    override suspend fun addBinItemInDb(binItem: BinItem) {
         if (binItem.bin != "") {
-            binListDao.addBinHistoryItem(mapper.mapBinItemToDbModel(binItem))
+            binListDao.addBinItemInDb(mapper.mapBinItemToDbModel(binItem))
         }
     }
 }

@@ -6,9 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.cftbin.data.CardRepositoryImpl
 import com.example.cftbin.domain.entity.BinItem
 import com.example.cftbin.domain.entity.CardInfo
-import com.example.cftbin.domain.usecase.AddBinHistoryItemUseCase
-import com.example.cftbin.domain.usecase.ClearOldEntitiesUseCase
-import com.example.cftbin.domain.usecase.GetBinHistoryArrayUseCase
+import com.example.cftbin.domain.usecase.AddBinItemInDbUseCase
+import com.example.cftbin.domain.usecase.ClearOldDbEntitiesUseCase
+import com.example.cftbin.domain.usecase.GetBinItemSetUseCase
 import com.example.cftbin.domain.usecase.GetCardInfoByBinUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,11 +19,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = CardRepositoryImpl(application)
 
     private val getCardInfoByBinUseCase = GetCardInfoByBinUseCase(repository)
-    private val getBinHistoryArrayUseCase = GetBinHistoryArrayUseCase(repository)
-    private val addBinHistoryItemUseCase = AddBinHistoryItemUseCase(repository)
-    private val clearOldEntitiesUseCase = ClearOldEntitiesUseCase(repository)
+    private val getBinItemSetUseCase = GetBinItemSetUseCase(repository)
+    private val addBinItemInDbUseCase = AddBinItemInDbUseCase(repository)
+    private val clearOldDbEntitiesUseCase = ClearOldDbEntitiesUseCase(repository)
 
-    private val binList = getBinHistoryArrayUseCase.getBinHistoryArray()
+    private val binList = getBinItemSetUseCase.getBinItemSet()
 
     private val _itemCardInfo: MutableStateFlow<CardInfo?> = MutableStateFlow(null)
     val itemCardInfo: StateFlow<CardInfo?>
@@ -47,8 +47,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             _itemCardInfo.value = getCardInfoByBinUseCase.getCardInfoByBin(parseBin(bin))
             val binItem = BinItem(bin = parseBin(bin))
-            addBinHistoryItemUseCase.addBinHistoryItem(binItem)
-            clearOldEntitiesUseCase.clearOldEntities()
+            addBinItemInDbUseCase.addBinItemInDb(binItem)
+            clearOldDbEntitiesUseCase.clearOldDbEntities()
         }
     }
 

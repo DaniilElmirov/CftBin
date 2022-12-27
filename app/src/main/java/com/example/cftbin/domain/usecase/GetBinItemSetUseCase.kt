@@ -4,10 +4,10 @@ import com.example.cftbin.domain.CardRepository
 import com.example.cftbin.domain.entity.BinItem
 import kotlinx.coroutines.flow.Flow
 
-class GetBinHistoryArrayUseCase(
+class GetBinItemSetUseCase(
     private val repository: CardRepository
 ) {
-    fun getBinHistoryArray(): Flow<Set<BinItem>> {
-        return repository.getBinHistoryArray()
+    fun getBinItemSet(): Flow<Set<BinItem>> {
+        return repository.getBinItemSet()
     }
 }

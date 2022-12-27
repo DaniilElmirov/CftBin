@@ -39,10 +39,20 @@ class MainActivityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        showCardInfo()
+        showBinsHistory()
+
         binding.bLoadData.setOnClickListener {
             viewModel.getCardInfoByBin(binding.tvBin.text.toString())
         }
+    }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun showCardInfo() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.itemCardInfo.collect {
@@ -50,7 +60,9 @@ class MainActivityFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun showBinsHistory() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.setBinHistory.collect {
@@ -61,12 +73,6 @@ class MainActivityFragment : Fragment() {
             }
         }
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
 
     private fun fillTextView(cardInfo: CardInfo?) {
         if (cardInfo == null) {

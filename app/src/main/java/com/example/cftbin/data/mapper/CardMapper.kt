@@ -47,9 +47,9 @@ class CardMapper {
 
     fun mapBinItemToDbModel(binItem: BinItem) = BinItemDbModel(id = binItem.id, bin = binItem.bin)
 
-    private fun mapBinDbModelToItem(binItem: BinItemDbModel) = BinItem(id = binItem.id, bin = binItem.bin)
+    private fun mapBinDbToItem(binItem: BinItemDbModel) = BinItem(id = binItem.id, bin = binItem.bin)
 
-    fun mapDbBinArrayToArrayEntity(arrayDb: Array<BinItemDbModel>) = arrayDb.map {
-        mapBinDbModelToItem(it)
+    fun mapListBinDbToSetItem(arrayDb: List<BinItemDbModel>) = arrayDb.map {
+        mapBinDbToItem(it)
     }.toSet()
 }
