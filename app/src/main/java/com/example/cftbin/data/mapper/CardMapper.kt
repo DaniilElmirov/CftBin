@@ -51,5 +51,5 @@ class CardMapper {
 
     fun mapDbBinArrayToArrayEntity(arrayDb: Array<BinItemDbModel>) = arrayDb.map {
         mapBinDbModelToItem(it)
-    }.toTypedArray()
+    }.toSet()
 }

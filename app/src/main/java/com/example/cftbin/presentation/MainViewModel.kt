@@ -23,22 +23,33 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val addBinHistoryItemUseCase = AddBinHistoryItemUseCase(repository)
     private val clearOldEntitiesUseCase = ClearOldEntitiesUseCase(repository)
 
-    val binArray = getBinHistoryArrayUseCase.getBinHistoryArray()
+    private val binList = getBinHistoryArrayUseCase.getBinHistoryArray()
 
     private val _itemCardInfo: MutableStateFlow<CardInfo?> = MutableStateFlow(null)
     val itemCardInfo: StateFlow<CardInfo?>
         get() = _itemCardInfo.asStateFlow()
 
-    fun getCardInfoByBin(bin: String?) {
+    private val _setBinHistory: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
+    val setBinHistory: StateFlow<Set<String>>
+        get() = _setBinHistory.asStateFlow()
+
+    init {
         viewModelScope.launch {
-           _itemCardInfo.value = getCardInfoByBinUseCase.getCardInfoByBin(parseBin(bin))
-            val binItem = BinItem(bin = parseBin(bin))
-            addBinHistoryItemUseCase.addBinHistoryItem(binItem)
+            binList.collect {
+                it.map { binItem ->
+                    _setBinHistory.value += binItem.bin
+                }
+            }
         }
     }
 
-    suspend fun clearOldEntities() {
-        clearOldEntitiesUseCase.clearOldEntities()
+    fun getCardInfoByBin(bin: String?) {
+        viewModelScope.launch {
+            _itemCardInfo.value = getCardInfoByBinUseCase.getCardInfoByBin(parseBin(bin))
+            val binItem = BinItem(bin = parseBin(bin))
+            addBinHistoryItemUseCase.addBinHistoryItem(binItem)
+            clearOldEntitiesUseCase.clearOldEntities()
+        }
     }
 
     private fun parseBin(bin: String?) = bin?.trim() ?: ""

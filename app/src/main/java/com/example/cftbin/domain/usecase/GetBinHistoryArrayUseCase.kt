@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class GetBinHistoryArrayUseCase(
     private val repository: CardRepository
 ) {
-    fun getBinHistoryArray(): Flow<Array<BinItem>> {
+    fun getBinHistoryArray(): Flow<Set<BinItem>> {
         return repository.getBinHistoryArray()
     }
 }

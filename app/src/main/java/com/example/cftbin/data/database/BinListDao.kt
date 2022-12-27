@@ -2,6 +2,7 @@ package com.example.cftbin.data.database
 
 import androidx.room.Dao
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
@@ -10,9 +11,9 @@ interface BinListDao {
     @Query("SELECT * FROM bin_history_items ORDER BY id DESC LIMIT 5")
     fun getBinHistoryArray(): Flow<Array<BinItemDbModel>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addBinHistoryItem(binItem: BinItemDbModel)
 
-//    @Query("DELETE FROM bin_history_items WHERE id < ((SELECT MAX (id)) - 5) OR 0")
-//    suspend fun clearOldEntities()
+    @Query("DELETE FROM bin_history_items WHERE id < ((SELECT MAX (id) FROM bin_history_items) - 5) OR 0")
+    suspend fun clearOldEntities()
 }

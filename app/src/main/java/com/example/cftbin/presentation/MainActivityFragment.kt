@@ -53,10 +53,8 @@ class MainActivityFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.binArray.collect {
-                    it.forEach {binItem ->
-                        bins += binItem.bin
-                    }
+                viewModel.setBinHistory.collect {
+                    bins = it.toTypedArray()
                     val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_history, bins)
                     binding.tvBin.setAdapter(arrayAdapter)
                 }
