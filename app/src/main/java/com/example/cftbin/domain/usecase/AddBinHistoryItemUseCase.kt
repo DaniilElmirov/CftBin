@@ -2,12 +2,11 @@ package com.example.cftbin.domain.usecase
 
 import com.example.cftbin.domain.CardRepository
 import com.example.cftbin.domain.entity.BinItem
-import kotlinx.coroutines.flow.Flow
 
-class GetBinHistoryArrayUseCase(
+class AddBinHistoryItemUseCase(
     private val repository: CardRepository
 ) {
-    fun getBinHistoryArray(): Flow<Array<BinItem>> {
-        return repository.getBinHistoryArray()
+    suspend fun addBinHistoryItem(binItem: BinItem) {
+        repository.addBinHistoryItem(binItem)
     }
 }

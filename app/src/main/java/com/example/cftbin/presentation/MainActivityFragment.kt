@@ -25,6 +25,8 @@ class MainActivityFragment : Fragment() {
         ViewModelProvider(this)[MainViewModel::class.java]
     }
 
+    private var bins = emptyArray<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,10 +39,6 @@ class MainActivityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bins = resources.getStringArray(R.array.card_bins)
-        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_history, bins)
-        binding.tvBin.setAdapter(arrayAdapter)
-
         binding.bLoadData.setOnClickListener {
             viewModel.getCardInfoByBin(binding.tvBin.text.toString())
         }
@@ -52,12 +50,25 @@ class MainActivityFragment : Fragment() {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.binArray.collect {
+                    it.forEach {binItem ->
+                        bins += binItem.bin
+                    }
+                    val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_history, bins)
+                    binding.tvBin.setAdapter(arrayAdapter)
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 
     private fun fillTextView(cardInfo: CardInfo?) {
         if (cardInfo == null) {

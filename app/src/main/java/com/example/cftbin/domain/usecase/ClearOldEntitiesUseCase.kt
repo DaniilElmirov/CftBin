@@ -5,7 +5,7 @@ import com.example.cftbin.domain.CardRepository
 class ClearOldEntitiesUseCase(
     private val repository: CardRepository
 ) {
-    fun clearOldEntities() {
+    suspend fun clearOldEntities() {
         repository.clearOldEntities()
     }
 }

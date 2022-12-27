@@ -1,12 +1,11 @@
 package com.example.cftbin.data.mapper
 
+import com.example.cftbin.data.database.BinItemDbModel
 import com.example.cftbin.data.network.model.BankDto
 import com.example.cftbin.data.network.model.CardInfoDto
 import com.example.cftbin.data.network.model.CountryDto
 import com.example.cftbin.data.network.model.NumberDto
-import com.example.cftbin.domain.entity.Bank
-import com.example.cftbin.domain.entity.CardInfo
-import com.example.cftbin.domain.entity.Country
+import com.example.cftbin.domain.entity.*
 import com.example.cftbin.domain.entity.Number
 
 class CardMapper {
@@ -36,8 +35,6 @@ class CardMapper {
         luhn = numberDto.luhn,
     )
 
-
-
     fun mapCardInfoDtoToEntity(cardInfoDto: CardInfoDto) = CardInfo(
         number = mapNumberDtoToEntity(cardInfoDto.number),
         scheme = cardInfoDto.scheme,
@@ -47,4 +44,12 @@ class CardMapper {
         country = mapCountryDtoToEntity(cardInfoDto.country),
         bank = mapBankDtoToEntity(cardInfoDto.bank),
     )
+
+    fun mapBinItemToDbModel(binItem: BinItem) = BinItemDbModel(id = binItem.id, bin = binItem.bin)
+
+    private fun mapBinDbModelToItem(binItem: BinItemDbModel) = BinItem(id = binItem.id, bin = binItem.bin)
+
+    fun mapDbBinArrayToArrayEntity(arrayDb: Array<BinItemDbModel>) = arrayDb.map {
+        mapBinDbModelToItem(it)
+    }.toTypedArray()
 }
