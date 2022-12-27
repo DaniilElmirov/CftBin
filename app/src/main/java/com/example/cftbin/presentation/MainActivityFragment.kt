@@ -81,8 +81,10 @@ class MainActivityFragment : Fragment() {
             with(binding) {
                 textSchemeNetwork.text = cardInfo.scheme
                 textBrand.text = cardInfo.brand ?: DEFAULT_TEXT
+
                 textLength.text = cardInfo.number.length.toString()
                 textLuhn.text = if (cardInfo.number.luhn) "Yes" else "No"
+
                 textType.text = cardInfo.type ?: DEFAULT_TEXT
 
                 if (cardInfo.prepaid == null)
@@ -93,6 +95,8 @@ class MainActivityFragment : Fragment() {
                     textPrepaid.text = TEXT_NO
 
                 textAlphaTwo.text = cardInfo.country?.alphaTwo ?: DEFAULT_TEXT
+                textNumeric.text = cardInfo.country?.numeric ?: DEFAULT_TEXT
+                textCurrency.text = cardInfo.country?.currency ?: DEFAULT_TEXT
                 textCountryName.text = cardInfo.country?.name ?: DEFAULT_TEXT
 
                 textLatitudeLongitude.text = if (cardInfo.country?.latitude != null)
@@ -123,6 +127,8 @@ class MainActivityFragment : Fragment() {
             setDefaultText(textType)
             setDefaultText(textPrepaid)
             setDefaultText(textAlphaTwo)
+            setDefaultText(textNumeric)
+            setDefaultText(textCurrency)
             setDefaultText(textCountryName)
             setDefaultText(textLatitudeLongitude)
             setDefaultText(textBankName)
