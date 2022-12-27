@@ -48,7 +48,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             _itemCardInfo.value = getCardInfoByBinUseCase.getCardInfoByBin(parseBin(bin))
             val binItem = BinItem(bin = parseBin(bin))
             addBinItemInDbUseCase.addBinItemInDb(binItem)
-            clearOldDbEntitiesUseCase.clearOldDbEntities()
         }
     }
 

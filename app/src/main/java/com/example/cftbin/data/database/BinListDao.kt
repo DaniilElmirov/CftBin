@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BinListDao {
-    @Query("SELECT * FROM bin_history_items ")//ORDER BY id DESC LIMIT 5
+    @Query("SELECT * FROM bin_history_items")
     fun getBinDbList(): Flow<List<BinItemDbModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
