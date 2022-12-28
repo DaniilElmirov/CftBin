@@ -246,55 +246,11 @@
         android:gravity="center" />
 
     <TextView
-        android:id="@+id/text_alpha_two"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintStart_toStartOf="@id/gl_center"
-        app:layout_constraintEnd_toStartOf="@+id/text_numeric"
-        app:layout_constraintTop_toBottomOf="@+id/title_country"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="4dp"
-
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_country_name" />
-
-    <TextView
-        android:id="@+id/text_numeric"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintStart_toEndOf="@id/text_alpha_two"
-        app:layout_constraintEnd_toStartOf="@+id/text_country_name"
-        app:layout_constraintTop_toBottomOf="@+id/title_country"
-        android:layout_marginTop="8dp"
-
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_country_name" />
-
-    <TextView
-        android:id="@+id/text_currency"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        app:layout_constraintStart_toStartOf="@+id/text_alpha_two"
-        app:layout_constraintEnd_toEndOf="@+id/text_numeric"
-        app:layout_constraintTop_toBottomOf="@+id/text_alpha_two"
-
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
-
-    <TextView
         android:id="@+id/text_country_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
-        app:layout_constraintStart_toEndOf="@+id/text_numeric"
+        app:layout_constraintStart_toEndOf="@+id/gl_center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title_country"
         android:layout_marginTop="8dp"
@@ -302,8 +258,7 @@
 
         android:textSize="12sp"
         android:gravity="center"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_chainStyle="packed"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_latitude_longitude"
@@ -318,6 +273,50 @@
         android:gravity="center"
         tools:text="dfgdfgd" />
 
+    <TextView
+        android:id="@+id/text_alpha_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="@id/text_latitude_longitude"
+        app:layout_constraintEnd_toStartOf="@+id/text_numeric"
+        app:layout_constraintTop_toBottomOf="@+id/text_latitude_longitude"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/text_numeric"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toEndOf="@id/text_alpha_two"
+        app:layout_constraintEnd_toEndOf="@id/text_latitude_longitude"
+        app:layout_constraintTop_toBottomOf="@+id/text_latitude_longitude"
+        android:layout_marginTop="8dp"
+
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+    <TextView
+        android:id="@+id/text_currency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintStart_toStartOf="@+id/text_alpha_two"
+        app:layout_constraintEnd_toEndOf="@+id/text_numeric"
+        app:layout_constraintTop_toBottomOf="@+id/text_alpha_two"
+
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
 
     <TextView
         android:id="@+id/title_bank"
@@ -326,7 +325,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_latitude_longitude"
+        app:layout_constraintTop_toBottomOf="@+id/text_currency"
         android:layout_marginTop="16dp"
 
         android:text="@string/bank"
@@ -389,6 +388,7 @@
         app:layout_constraintEnd_toEndOf="@+id/title_bank"
         app:layout_constraintTop_toBottomOf="@+id/text_bank_url"
         android:layout_marginTop="8dp"
+        android:paddingBottom="8dp"
 
         android:autoLink="phone"
 
