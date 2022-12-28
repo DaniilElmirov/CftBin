@@ -9,6 +9,8 @@ interface CardRepository {
 
     fun getBinItemSet(): Flow<Set<BinItem>>
 
+    suspend fun deleteDuplicateDbEntities(bin: String)
+
     suspend fun clearOldDbEntities()
 
     suspend fun addBinItemInDb(binItem: BinItem)

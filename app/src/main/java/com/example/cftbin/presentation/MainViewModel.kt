@@ -6,10 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.cftbin.data.CardRepositoryImpl
 import com.example.cftbin.domain.entity.BinItem
 import com.example.cftbin.domain.entity.CardInfo
-import com.example.cftbin.domain.usecase.AddBinItemInDbUseCase
-import com.example.cftbin.domain.usecase.ClearOldDbEntitiesUseCase
-import com.example.cftbin.domain.usecase.GetBinItemSetUseCase
-import com.example.cftbin.domain.usecase.GetCardInfoByBinUseCase
+import com.example.cftbin.domain.usecase.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -21,7 +18,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val getCardInfoByBinUseCase = GetCardInfoByBinUseCase(repository)
     private val getBinItemSetUseCase = GetBinItemSetUseCase(repository)
     private val addBinItemInDbUseCase = AddBinItemInDbUseCase(repository)
-    private val clearOldDbEntitiesUseCase = ClearOldDbEntitiesUseCase(repository)
+    private val deleteDuplicateDbEntitiesUseCase = DeleteDuplicateDbEntitiesUseCase(repository)
 
     private val binList = getBinItemSetUseCase.getBinItemSet()
 
@@ -46,6 +43,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     fun getCardInfoByBin(bin: String?) {
         viewModelScope.launch {
             _itemCardInfo.value = getCardInfoByBinUseCase.getCardInfoByBin(parseBin(bin))
+
+            deleteDuplicateDbEntitiesUseCase.deleteDuplicateDbEntities(parseBin(bin))
+
             val binItem = BinItem(bin = parseBin(bin))
             addBinItemInDbUseCase.addBinItemInDb(binItem)
         }

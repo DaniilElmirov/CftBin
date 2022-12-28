@@ -44,6 +44,10 @@ class CardRepositoryImpl(application: Application) : CardRepository {
         }
     }
 
+    override suspend fun deleteDuplicateDbEntities(bin: String) {
+        binListDao.deleteDuplicateDbEntities(bin)
+    }
+
     override suspend fun clearOldDbEntities() {
         binListDao.clearOldDbEntities()
     }
